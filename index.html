@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lantern Labs</title>
+  <meta name="description" content="Lantern Labs builds thoughtful tools that light the way.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='36' r='18' fill='%23f5a524'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0e0c0a;
+      --bg-soft: #17130f;
+      --text: #f4ede4;
+      --muted: #a89c8d;
+      --glow: #f5a524;
+      --glow-soft: rgba(245, 165, 36, 0.18);
+      --line: rgba(244, 237, 228, 0.1);
+      --max: 1080px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(14, 12, 10, 0.7);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { display: flex; align-items: center; gap: 10px; font-family: "Fraunces", serif; font-weight: 700; font-size: 1.2rem; }
+    .logo-dot {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--glow);
+      box-shadow: 0 0 12px var(--glow), 0 0 28px var(--glow-soft);
+    }
+    nav ul { list-style: none; display: flex; gap: 28px; font-size: 0.95rem; color: var(--muted); }
+    nav ul a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero { position: relative; padding: 140px 0 120px; text-align: center; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; left: 50%; top: 40%;
+      width: 640px; height: 640px; transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(245,165,36,0.28) 0%, rgba(245,165,36,0.06) 40%, transparent 70%);
+      animation: flicker 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes flicker {
+      0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.05); }
+    }
+    .hero > * { position: relative; }
+    .eyebrow { display: inline-block; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--glow); margin-bottom: 20px; }
+    h1 {
+      font-family: "Fraunces", serif; font-weight: 700;
+      font-size: clamp(2.6rem, 7vw, 5rem); line-height: 1.05;
+      max-width: 14ch; margin: 0 auto 24px;
+    }
+    h1 em { font-style: normal; color: var(--glow); }
+    .lede { font-size: 1.15rem; color: var(--muted); max-width: 52ch; margin: 0 auto 40px; }
+    .btn {
+      display: inline-block; padding: 14px 28px; border-radius: 999px;
+      background: var(--glow); color: #1a1206; font-weight: 600;
+      box-shadow: 0 0 30px var(--glow-soft);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 0 44px rgba(245,165,36,0.35); }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--line); box-shadow: none; margin-left: 10px; }
+    .btn-ghost:hover { border-color: var(--muted); box-shadow: none; }
+
+    /* Sections */
+    section { padding: 96px 0; border-top: 1px solid var(--line); }
+    h2 { font-family: "Fraunces", serif; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.15; margin-bottom: 16px; }
+    .section-lede { color: var(--muted); max-width: 56ch; margin-bottom: 48px; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card {
+      background: var(--bg-soft); border: 1px solid var(--line); border-radius: 16px;
+      padding: 28px; transition: border-color .2s ease, transform .2s ease;
+    }
+    .card:hover { border-color: rgba(245,165,36,0.4); transform: translateY(-3px); }
+    .card .num { font-family: "Fraunces", serif; color: var(--glow); font-size: 0.95rem; margin-bottom: 14px; }
+    .card h3 { font-size: 1.15rem; margin-bottom: 8px; font-weight: 600; }
+    .card p { color: var(--muted); font-size: 0.97rem; }
+
+    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .about p { color: var(--muted); margin-bottom: 16px; }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .stat { padding: 24px; border-left: 2px solid var(--glow); background: var(--bg-soft); border-radius: 0 12px 12px 0; }
+    .stat strong { display: block; font-family: "Fraunces", serif; font-size: 2rem; }
+    .stat span { color: var(--muted); font-size: 0.9rem; }
+
+    .contact { text-align: center; }
+    .contact .section-lede { margin-left: auto; margin-right: auto; }
+
+    footer { border-top: 1px solid var(--line); padding: 32px 0; color: var(--muted); font-size: 0.88rem; }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+    @media (max-width: 800px) {
+      nav ul { display: none; }
+      .grid, .about { grid-template-columns: 1fr; }
+      .about { gap: 32px; }
+      .hero { padding: 96px 0 80px; }
+      .hero::before { width: 420px; height: 420px; }
+      section { padding: 72px 0; }
+      .btn-ghost { margin: 12px 0 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero::before { animation: none; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a href="#" class="logo"><span class="logo-dot"></span>Lantern Labs</a>
+      <ul>
+        <li><a href="#work">What we do</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Lantern Labs</span>
+      <h1>Building tools that <em>light the way</em>.</h1>
+      <p class="lede">We're a small studio exploring ideas, shipping experiments, and turning the promising ones into products people love to use.</p>
+      <a href="#contact" class="btn">Get in touch</a>
+      <a href="#work" class="btn btn-ghost">See what we do</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="work">
+      <div class="wrap">
+        <h2>What we do</h2>
+        <p class="section-lede">Every project starts as a small spark. We give it room to grow.</p>
+        <div class="grid">
+          <div class="card">
+            <div class="num">01</div>
+            <h3>Explore</h3>
+            <p>We prototype fast, test ideas with real people, and follow the ones that glow brightest.</p>
+          </div>
+          <div class="card">
+            <div class="num">02</div>
+            <h3>Build</h3>
+            <p>Thoughtful design and solid engineering, from first sketch to working product.</p>
+          </div>
+          <div class="card">
+            <div class="num">03</div>
+            <h3>Share</h3>
+            <p>We launch, learn, and keep improving, so our work keeps getting more useful.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap about">
+        <div>
+          <h2>A lab for curious ideas</h2>
+          <p>Lantern Labs is where experiments become real. We care about craft, clarity, and building things that make everyday work a little brighter.</p>
+          <p>We keep teams small, cycles short, and standards high.</p>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>Small</strong><span>focused team</span></div>
+          <div class="stat"><strong>Fast</strong><span>idea to prototype</span></div>
+          <div class="stat"><strong>Open</strong><span>to collaboration</span></div>
+          <div class="stat"><strong>Curious</strong><span>by default</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="wrap">
+        <h2>Have an idea worth lighting up?</h2>
+        <p class="section-lede">We'd love to hear about it. Drop us a line and we'll get back to you.</p>
+        <a href="mailto:hello@lanternlabs.com" class="btn">hello@lanternlabs.com</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="year">2026</span> Lantern Labs</span>
+      <span>Made with care.</span>
+    </div>
+  </footer>
+
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
