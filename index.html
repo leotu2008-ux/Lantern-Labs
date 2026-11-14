@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lantern Labs</title>
   <meta name="description" content="Lantern Labs builds thoughtful tools that light the way.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='18' fill='%23e8940c'/></svg>">
+  <link rel="icon" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #fffdf9;
-      --text: #1c1917;
-      --muted: #78716c;
-      --accent: #e8940c;
+      --text: #192135;
+      --muted: #6b7183;
+      --accent: #192135;
       --line: #ece7df;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,15 +30,14 @@
 
     header { padding: 32px 0; }
     .logo { display: flex; align-items: center; gap: 10px; font-weight: 600; }
-    .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); }
+    .logo img { width: 36px; height: 36px; border-radius: 8px; }
 
     body { min-height: 100vh; display: flex; flex-direction: column; }
     main { flex: 1; padding: 96px 0 120px; }
     h1 { font-size: clamp(2.2rem, 6vw, 3.2rem); line-height: 1.1; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 20px; }
-    h1 span { color: var(--accent); }
     p { color: var(--muted); font-size: 1.1rem; margin-bottom: 32px; }
     .contact { color: var(--text); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
-    .contact:hover { color: var(--accent); }
+    .contact:hover { opacity: 0.7; }
 
     footer { border-top: 1px solid var(--line); padding: 24px 0; color: var(--muted); font-size: 0.875rem; }
 
@@ -48,7 +47,7 @@
 <body>
   <header>
     <div class="wrap">
-      <div class="logo"><span class="dot"></span>Lantern Labs</div>
+      <div class="logo"><img src="logo.png" alt="">Lantern Labs</div>
     </div>
   </header>
 
