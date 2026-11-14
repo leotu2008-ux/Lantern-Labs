@@ -8,7 +8,7 @@
   <link rel="icon" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Jost:wght@400&display=swap" rel="stylesheet">
   <style>
     :root {
       --paper: #f7f5f0;
@@ -21,9 +21,8 @@
     body {
       background: var(--paper);
       color: var(--ink);
-      font-family: "IBM Plex Mono", ui-monospace, monospace;
-      font-size: 13px;
-      letter-spacing: 0.01em;
+      font-family: "Jost", "Futura", "Century Gothic", sans-serif;
+      font-size: 15px;
       -webkit-font-smoothing: antialiased;
       display: grid;
       grid-template-rows: auto 1fr auto;
@@ -35,20 +34,21 @@
     header, footer { display: flex; justify-content: space-between; align-items: center; gap: 16px; color: var(--faint); }
     header img { width: 32px; height: 32px; border-radius: 7px; display: block; }
 
-    main { align-self: end; max-width: 880px; padding: 12vh 0 10vh; }
+    main { align-self: end; max-width: 1200px; padding: 12vh 0 10vh; }
     h1 {
-      font-family: "Instrument Serif", serif;
-      font-weight: 400;
-      font-size: clamp(3rem, 9vw, 7.5rem);
-      line-height: 0.95;
-      letter-spacing: -0.02em;
+      font-family: "Josefin Sans", "Futura", "Century Gothic", sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: clamp(38px, 6vw, 104px);
+      line-height: 0.92;
+      letter-spacing: 0.04em;
     }
 
     .rows { margin-top: 48px; max-width: 420px; border-top: 1px solid var(--rule); }
     .rows div { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--rule); }
     .rows span:last-child { color: var(--faint); }
 
-    .apply { display: inline-flex; gap: 10px; margin-top: 40px; font-size: 14px; border-bottom: 1px solid var(--ink); padding-bottom: 3px; }
+    .apply { display: inline-flex; gap: 10px; margin-top: 40px; font-size: 16px; border-bottom: 1px solid var(--ink); padding-bottom: 3px; }
     .apply i { font-style: normal; transition: transform .25s ease; }
     .apply:hover i { transform: translateX(4px); }
 
