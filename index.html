@@ -1,37 +1,160 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lantern Lab</title>
-<link rel="icon" href="logo.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lantern Lab</title>
+  <meta name="description" content="lantern lab is where students build. you own 100% of what you make.">
+  <link rel="icon" href="logo.png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    main { max-width: 520px; width: 100%; }
+
+    #art {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 5px;
+      line-height: 1;
+      letter-spacing: 0.5px;
+      white-space: pre;
+      color: #fff;
+      margin-bottom: 32px;
+      user-select: none;
+    }
+
+    #about { opacity: 0; transition: opacity 1.2s ease; }
+    #about.visible { opacity: 1; }
+    #about p + p { margin-top: 1.7em; }
+
+    a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      #about { opacity: 1; transition: none; }
+    }
+  </style>
 </head>
 <body>
+  <main>
+    <pre id="art" aria-hidden="true"></pre>
 
-<img src="logo.png" width="64" height="64" alt="Lantern Lab logo">
+    <div id="about">
+      <p>hey! this is lantern lab.</p>
+      <p>lantern lab is where students build. every week we get in a room and ship things: startups, side projects, ai tools, hardware experiments. there's a crit every two weeks, a hack day each semester, and a demo night at the end to show what got made.</p>
+      <p>you own 100% of what you make. no equity, no fees, no strings.</p>
+      <p>part of <a href="https://lantern.ventures">lantern →</a></p>
+    </div>
+  </main>
 
-<h1>Lantern Lab</h1>
+  <script>
+    var RAMP = " .,:;+*?%S#@";
+    var NOISE = "@#$%&*+=?!;:~^/<>[]{}|";
+    var COLS = 72;
+    var CHAR_W = 3.5, CHAR_H = 5;           // 5px Courier + 0.5px spacing
+    var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-<p>Lantern Lab is where students build.</p>
+    var art = document.getElementById("art");
+    var about = document.getElementById("about");
+    var grid = [];                           // ramp index per cell, -1 = blank
 
-<hr>
+    function rnd(s) { return s[Math.floor(Math.random() * s.length)]; }
 
-<h2>What happens</h2>
+    function draw(fn) {
+      var out = "";
+      for (var r = 0; r < grid.length; r++) {
+        for (var c = 0; c < grid[r].length; c++) out += fn(grid[r][c], r, c);
+        out += "\n";
+      }
+      art.textContent = out;
+    }
 
-<ul>
-<li>Build night: every week</li>
-<li>Crit: every two weeks</li>
-<li>Hack day: once a semester</li>
-<li>Demo night: end of each semester</li>
-</ul>
+    function settled(v) { return v < 0 ? " " : RAMP[v]; }
 
-<h2>The rule</h2>
+    // flicker: a few lit cells drift one step up or down the ramp, like a flame
+    function flicker() {
+      draw(function (v) {
+        if (v < 0) return " ";
+        if (Math.random() < 0.035) {
+          var d = Math.random() < 0.5 ? -1 : 1;
+          return RAMP[Math.max(1, Math.min(RAMP.length - 1, v + d))];
+        }
+        return RAMP[v];
+      });
+      setTimeout(flicker, 110);
+    }
 
-<p>You own 100% of what you make. No equity, no fees, no strings.</p>
+    // reveal: every lit cell starts as noise and resolves to its final char
+    function reveal(done) {
+      var start = performance.now(), dur = 1400;
+      var delay = grid.map(function (row) { return row.map(function () { return Math.random() * dur * 0.75; }); });
+      (function frame(now) {
+        var t = now - start;
+        draw(function (v, r, c) {
+          if (v < 0) return " ";
+          return t > delay[r][c] + dur * 0.25 ? RAMP[v] : rnd(NOISE);
+        });
+        if (t < dur) requestAnimationFrame(frame); else done();
+      })(start);
+    }
 
-<hr>
+    var img = new Image();
+    img.onload = function () {
+      var rows = Math.round(COLS * (img.height / img.width) * (CHAR_W / CHAR_H));
+      var cv = document.createElement("canvas");
+      cv.width = COLS; cv.height = rows;
+      var cx = cv.getContext("2d");
+      cx.drawImage(img, 0, 0, COLS, rows);
+      var px = cx.getImageData(0, 0, COLS, rows).data;
+      for (var r = 0; r < rows; r++) {
+        var row = [];
+        for (var c = 0; c < COLS; c++) {
+          var i = (r * COLS + c) * 4;
+          var b = (px[i] * 0.21 + px[i + 1] * 0.72 + px[i + 2] * 0.07) / 255;
+          row.push(b < 0.3 ? -1 : Math.round(b * (RAMP.length - 1)));
+        }
+        grid.push(row);
+      }
+      if (reduced) { draw(settled); about.classList.add("visible"); return; }
+      reveal(function () { draw(settled); flicker(); });
+      setTimeout(function () { about.classList.add("visible"); }, 900);
+    };
+    img.onerror = function () { about.classList.add("visible"); };
+    img.src = "logo.png";
 
-<p>Part of <a href="https://lantern.ventures">Lantern</a>.</p>
-
+    // link hover: letters scramble, then resolve left to right
+    document.querySelectorAll("#about a").forEach(function (a) {
+      var text = a.textContent, timer = null, widths = null;
+      a.addEventListener("mouseenter", function () {
+        if (reduced) return;
+        if (!widths) {
+          a.innerHTML = text.split("").map(function (ch) { return "<span>" + ch + "</span>"; }).join("");
+          widths = [].map.call(a.children, function (s) { return s.getBoundingClientRect().width; });
+        }
+        var step = 0, n = text.length;
+        clearInterval(timer);
+        timer = setInterval(function () {
+          a.innerHTML = "";
+          for (var i = 0; i < n; i++) {
+            var s = document.createElement("span");
+            s.style.cssText = "display:inline-block;text-align:center;width:" + widths[i] + "px";
+            s.textContent = text[i] === " " ? " " : (i < step - n ? text[i] : i < step ? rnd(NOISE) : text[i]);
+            a.appendChild(s);
+          }
+          if (++step > n * 2) { clearInterval(timer); a.textContent = text; }
+        }, 30);
+      });
+      a.addEventListener("mouseleave", function () { clearInterval(timer); a.textContent = text; });
+    });
+  </script>
 </body>
 </html>
