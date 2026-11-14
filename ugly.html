@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>~*~ LaNtErN LaB HoMePaGe ~*~</title>
+  <link rel="icon" href="logo.png">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", cursive;
+      color: #00ff00;
+      background-color: #ff00ff;
+      background-image:
+        repeating-linear-gradient(45deg, #ffff00 0 20px, #ff00ff 20px 40px),
+        radial-gradient(#00ffff 2px, transparent 3px);
+      background-size: auto, 30px 30px;
+      cursor: crosshair;
+      overflow-x: hidden;
+    }
+    marquee { font-size: 22px; font-weight: bold; background: #0000ff; color: #ffff00; padding: 6px 0; border-top: 4px ridge #ff0000; border-bottom: 4px ridge #ff0000; }
+    .box {
+      max-width: 720px; margin: 24px auto; padding: 16px;
+      background: #000080; border: 8px outset #c0c0c0;
+      text-align: center;
+    }
+    h1 {
+      font-family: "Times New Roman", serif; font-size: clamp(32px, 8vw, 64px); margin: 10px 0;
+      background: linear-gradient(90deg, red, orange, yellow, lime, cyan, blue, magenta, red);
+      background-size: 400% 100%;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: rainbow 2s linear infinite;
+      text-shadow: none;
+    }
+    @keyframes rainbow { to { background-position: 400% 0; } }
+    .blink { animation: blink .6s steps(1) infinite; color: #ff0000; font-weight: bold; font-size: 20px; }
+    @keyframes blink { 50% { visibility: hidden; } }
+    .spin { width: 120px; height: 120px; animation: spin 1.5s linear infinite; border: 5px dashed #ffff00; border-radius: 50%; padding: 6px; background: #ff00ff; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .wobble { display: inline-block; animation: wobble .4s ease-in-out infinite alternate; }
+    @keyframes wobble { from { transform: rotate(-6deg) scale(1); } to { transform: rotate(6deg) scale(1.1); } }
+    table { margin: 16px auto; border: 4px ridge #00ff00; background: #c0c0c0; color: #000; font-family: "Courier New", monospace; }
+    td { border: 2px inset #fff; padding: 6px 12px; }
+    hr { border: 0; height: 12px; background: repeating-linear-gradient(90deg, red 0 10px, yellow 10px 20px, lime 20px 30px, blue 30px 40px); }
+    .construction {
+      display: inline-block; margin: 10px; padding: 10px 16px; font-weight: bold; color: #000;
+      background: repeating-linear-gradient(-45deg, #ffcc00 0 14px, #000 14px 28px);
+      border: 3px solid #000;
+    }
+    .construction span { background: #ffcc00; padding: 2px 6px; }
+    .counter { font-family: "Courier New", monospace; background: #000; color: #0f0; border: 3px inset #888; padding: 4px 8px; letter-spacing: 4px; font-size: 22px; }
+    a { color: #00ffff; font-size: 18px; }
+    a:visited { color: #ff00ff; }
+    .tiny { font-size: 10px; color: #c0c0c0; font-family: Arial, sans-serif; }
+    .btn {
+      font-family: inherit; font-size: 20px; padding: 10px 20px; margin: 10px;
+      background: #c0c0c0; border: 4px outset #fff; cursor: pointer; color: #000;
+    }
+    .btn:active { border-style: inset; }
+    .spark { position: fixed; pointer-events: none; font-size: 18px; z-index: 99; animation: fall 1s linear forwards; }
+    @keyframes fall { to { transform: translateY(60px) rotate(180deg); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <marquee scrollamount="12">🏮🏮🏮 WELCOME 2 THE OFFICIAL LANTERN LAB HOMEPAGE!!!!! 🏮🏮🏮 STUDENTS BUILD STUFF HERE!!! 🔥🔥🔥 WEEKLY BUILD NIGHTS!!!! 🔥🔥🔥 YOU OWN WHAT YOU MAKE!!!!! 🏮🏮🏮</marquee>
+
+  <div class="box">
+    <p class="blink">★ NEW!! ★ NEW!! ★ NEW!! ★</p>
+    <img class="spin" src="logo.png" alt="SPINNING LANTERN!!!">
+    <h1>LaNtErN LaB</h1>
+    <p><span class="wobble">is where students</span> <b><u><i>BUILD!!!!!!!</i></u></b></p>
+
+    <hr>
+
+    <div class="construction"><span>🚧 UNDER CONSTRUCTION 🚧</span></div>
+
+    <table>
+      <tr><td><b>WHAT</b></td><td><b>HOW OFTEN</b></td></tr>
+      <tr><td>build nite</td><td>EVERY WEEK!!!</td></tr>
+      <tr><td>crit</td><td>every 2 weeks</td></tr>
+      <tr><td>demo nite</td><td>each semester :-)</td></tr>
+    </table>
+
+    <p>u own 100% of what u make!!! no catch!!! (srsly)</p>
+
+    <button class="btn" onclick="alert('THANK U FOR CLICKING!!! 🏮🏮🏮\n\nu are a builder now')">CLICK HERE!!!</button>
+
+    <hr>
+
+    <p>U r visitor #</p>
+    <span class="counter" id="count">000000</span>
+
+    <p>
+      <a href="#" onclick="alert('guestbook coming soon!!!!');return false;">✍️ Sign my guestbook!!</a> |
+      <a href="#" onclick="alert('webring coming soon!!!!');return false;">🔗 Builder WebRing</a> |
+      <a href="index.html">🙈 go back 2 boring site</a>
+    </p>
+
+    <p class="tiny">Best viewed in Netscape Navigator 4.0 at 800x600. Made with Notepad. © 1998–2026 Lantern Lab</p>
+  </div>
+
+  <script>
+    // fake hit counter that keeps going up
+    let n = 1337;
+    const c = document.getElementById("count");
+    setInterval(() => { n += Math.floor(Math.random() * 7); c.textContent = String(n).padStart(6, "0"); }, 400);
+
+    // cursor sparkle trail
+    const bits = ["✨", "🏮", "⭐", "💫", "🔥"];
+    let last = 0;
+    document.addEventListener("mousemove", e => {
+      const now = Date.now();
+      if (now - last < 40) return;
+      last = now;
+      const s = document.createElement("span");
+      s.className = "spark";
+      s.textContent = bits[Math.floor(Math.random() * bits.length)];
+      s.style.left = e.clientX + "px";
+      s.style.top = e.clientY + "px";
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 1000);
+    });
+
+    // the title bar is also a marquee
+    let t = document.title + "   ";
+    setInterval(() => { t = t.slice(1) + t[0]; document.title = t; }, 200);
+  </script>
+</body>
+</html>
