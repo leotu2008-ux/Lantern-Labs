@@ -3,66 +3,89 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lantern Labs</title>
-  <meta name="description" content="Lantern Labs builds thoughtful tools that light the way.">
+  <title>Lantern Lab</title>
+  <meta name="description" content="Lantern Lab is where students build. Weekly build nights, demo nights each semester. You own everything you make.">
   <link rel="icon" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fffdf9;
-      --text: #192135;
-      --muted: #6b7183;
-      --accent: #192135;
-      --line: #ece7df;
+      --paper: #f7f5f0;
+      --ink: #192135;
+      --faint: #8a8f9c;
+      --rule: #dcd9d1;
+      --pad: clamp(20px, 5vw, 64px);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: "Inter", system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 13px;
+      letter-spacing: 0.01em;
       -webkit-font-smoothing: antialiased;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 100vh;
+      padding: var(--pad);
     }
-    a { color: inherit; }
-    .wrap { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+    a { color: inherit; text-decoration: none; }
 
-    header { padding: 32px 0; }
-    .logo { display: flex; align-items: center; gap: 10px; font-weight: 600; }
-    .logo img { width: 36px; height: 36px; border-radius: 8px; }
+    header, footer { display: flex; justify-content: space-between; align-items: center; gap: 16px; color: var(--faint); }
+    header img { width: 32px; height: 32px; border-radius: 7px; display: block; }
 
-    body { min-height: 100vh; display: flex; flex-direction: column; }
-    main { flex: 1; padding: 96px 0 120px; }
-    h1 { font-size: clamp(2.2rem, 6vw, 3.2rem); line-height: 1.1; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 20px; }
-    p { color: var(--muted); font-size: 1.1rem; margin-bottom: 32px; }
-    .contact { color: var(--text); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
-    .contact:hover { opacity: 0.7; }
+    main { align-self: end; max-width: 880px; padding: 12vh 0 10vh; }
+    h1 {
+      font-family: "Instrument Serif", serif;
+      font-weight: 400;
+      font-size: clamp(3rem, 9vw, 7.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+    h1 em { font-style: italic; }
 
-    footer { border-top: 1px solid var(--line); padding: 24px 0; color: var(--muted); font-size: 0.875rem; }
+    .rows { margin-top: 48px; max-width: 420px; border-top: 1px solid var(--rule); }
+    .rows div { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--rule); }
+    .rows span:last-child { color: var(--faint); }
 
-    @media (max-width: 600px) { main { padding: 56px 0 80px; } }
+    .apply { display: inline-flex; gap: 10px; margin-top: 40px; font-size: 14px; border-bottom: 1px solid var(--ink); padding-bottom: 3px; }
+    .apply i { font-style: normal; transition: transform .25s ease; }
+    .apply:hover i { transform: translateX(4px); }
+
+    /* one quiet entrance */
+    header, main > *, footer { opacity: 0; animation: rise .9s cubic-bezier(.2,.7,.2,1) forwards; }
+    main > h1 { animation-delay: .1s; }
+    main > .rows { animation-delay: .3s; }
+    main > .apply { animation-delay: .45s; }
+    footer { animation-delay: .6s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      header, main > *, footer { animation: none; opacity: 1; }
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="wrap">
-      <div class="logo"><img src="logo.png" alt="">Lantern Labs</div>
-    </div>
+    <img src="logo.png" alt="Lantern Lab">
+    <span>New York pilot</span>
   </header>
 
   <main>
-    <div class="wrap">
-      <h1>Building tools that <span>light the way</span>.</h1>
-      <p>We're a small studio exploring ideas and turning the promising ones into products people love to use.</p>
-      <a class="contact" href="mailto:hello@lanternlabs.com">hello@lanternlabs.com →</a>
+    <h1>Lantern Lab is where students <em>build.</em></h1>
+    <div class="rows">
+      <div><span>Build night</span><span>Weekly</span></div>
+      <div><span>Crit</span><span>Every two weeks</span></div>
+      <div><span>Demo night</span><span>Each semester</span></div>
     </div>
+    <a class="apply" href="mailto:hello@lanternlabs.com?subject=Lantern%20Lab%20application">Apply <i>→</i></a>
   </main>
 
   <footer>
-    <div class="wrap">© <span id="year">2026</span> Lantern Labs</div>
+    <span>You own 100% of what you make.</span>
+    <span>© <span id="y">2026</span></span>
   </footer>
 
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
 </body>
 </html>
