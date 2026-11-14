@@ -14,8 +14,6 @@
       --paper: #f7f5f0;
       --ink: #192135;
       --faint: #8a8f9c;
-      --rule: #dcd9d1;
-      --pad: clamp(20px, 5vw, 64px);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -24,67 +22,43 @@
       font-family: "Jost", "Futura", "Century Gothic", sans-serif;
       font-size: 15px;
       -webkit-font-smoothing: antialiased;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
       min-height: 100vh;
-      padding: var(--pad);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 48px 24px;
     }
     a { color: inherit; text-decoration: none; }
 
-    header, footer { display: flex; justify-content: space-between; align-items: center; gap: 16px; color: var(--faint); }
-    header img { width: 32px; height: 32px; border-radius: 7px; display: block; }
-
-    main { align-self: end; max-width: 1200px; padding: 12vh 0 10vh; }
+    img { width: 48px; height: 48px; border-radius: 10px; margin-bottom: 40px; }
     h1 {
       font-family: "Josefin Sans", "Futura", "Century Gothic", sans-serif;
       font-weight: 700;
       text-transform: uppercase;
-      font-size: clamp(38px, 6vw, 104px);
-      line-height: 0.92;
+      font-size: clamp(32px, 5vw, 72px);
+      line-height: 0.95;
       letter-spacing: 0.04em;
+      max-width: 22ch;
+      text-wrap: balance;
     }
+    p { color: var(--faint); margin-top: 24px; line-height: 1.6; }
+    .apply { margin-top: 40px; font-size: 16px; border-bottom: 1px solid var(--ink); padding-bottom: 3px; }
+    .apply:hover { opacity: 0.6; }
 
-    .rows { margin-top: 48px; max-width: 420px; border-top: 1px solid var(--rule); }
-    .rows div { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--rule); }
-    .rows span:last-child { color: var(--faint); }
-
-    .apply { display: inline-flex; gap: 10px; margin-top: 40px; font-size: 16px; border-bottom: 1px solid var(--ink); padding-bottom: 3px; }
-    .apply i { font-style: normal; transition: transform .25s ease; }
-    .apply:hover i { transform: translateX(4px); }
-
-    /* one quiet entrance */
-    header, main > *, footer { opacity: 0; animation: rise .9s cubic-bezier(.2,.7,.2,1) forwards; }
-    main > h1 { animation-delay: .1s; }
-    main > .rows { animation-delay: .3s; }
-    main > .apply { animation-delay: .45s; }
-    footer { animation-delay: .6s; }
+    body > * { opacity: 0; animation: rise .9s cubic-bezier(.2,.7,.2,1) forwards; }
+    h1 { animation-delay: .1s; }
+    p { animation-delay: .25s; }
+    .apply { animation-delay: .4s; }
     @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-    @media (prefers-reduced-motion: reduce) {
-      header, main > *, footer { animation: none; opacity: 1; }
-    }
+    @media (prefers-reduced-motion: reduce) { body > * { animation: none; opacity: 1; } }
   </style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Lantern Lab">
-    <span>New York pilot</span>
-  </header>
-
-  <main>
-    <h1>Lantern Lab is where students build.</h1>
-    <div class="rows">
-      <div><span>Build night</span><span>Weekly</span></div>
-      <div><span>Crit</span><span>Every two weeks</span></div>
-      <div><span>Demo night</span><span>Each semester</span></div>
-    </div>
-    <a class="apply" href="mailto:hello@lanternlabs.com?subject=Lantern%20Lab%20application">Apply <i>→</i></a>
-  </main>
-
-  <footer>
-    <span>You own 100% of what you make.</span>
-    <span>© <span id="y">2026</span></span>
-  </footer>
-
-  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+  <img src="logo.png" alt="Lantern Lab">
+  <h1>Lantern Lab is where students build.</h1>
+  <p>Weekly build nights in New York.<br>You own what you make.</p>
+  <a class="apply" href="mailto:hello@lanternlabs.com?subject=Lantern%20Lab%20application">Apply →</a>
 </body>
 </html>
