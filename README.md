@@ -4,6 +4,8 @@ Website for **Lantern Labs**: a room full of students building things, every wee
 
 Lantern Labs is a [Lantern](https://lantern.ventures) project.
 
+**Live:** [lantern-labs-phi.vercel.app](https://lantern-labs-phi.vercel.app)
+
 ## The page
 
 One static page, `index.html`, with no build step and no dependencies.
